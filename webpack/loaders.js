@@ -26,12 +26,6 @@ exports.html = {
   exclude: /node_modules/,
 };
 
-exports.css = {
-  test: /\.css$/,
-  loader: 'style-loader!css?-minimize!postcss',
-  exclude: /node_modules/,
-};
-
 exports.json = {
   test: /\.json$/,
   loader: 'json',

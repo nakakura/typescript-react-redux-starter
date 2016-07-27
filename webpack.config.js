@@ -1,17 +1,15 @@
 'use strict';
 
 const path = require('path');
-const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
-const postcssInit = require('./webpack/postcss');
 
 const applicationEntries = process.env.NODE_ENV === 'development'
   ? [ 'webpack-hot-middleware/client?reload=true' ]
   : [ ];
 
 module.exports = {
-  entry: [ './src/index.tsx' ].concat(applicationEntries),
+  entry: [ './src/index.ts' ].concat(applicationEntries),
 
   output: {
     path: path.join(__dirname, 'dist'),
@@ -39,19 +37,12 @@ module.exports = {
 
   plugins: plugins,
 
-  devServer: {
-    historyApiFallback: { index: '/' },
-    proxy: Object.assign({}, proxy(), { '/api/*': 'http://localhost:3000' }),
-  },
-
   module: {
     preLoaders: [
       loaders.tslint,
     ],
     loaders: [
       loaders.tsx,
-      loaders.html,
-      loaders.css,
       loaders.svg,
       loaders.eot,
       loaders.woff,
@@ -65,7 +56,5 @@ module.exports = {
     'react/lib/ReactContext': 'window',
     'react/lib/ExecutionEnvironment': true,
     'react/addons': true,
-  },
-
-  postcss: postcssInit,
+  }
 };

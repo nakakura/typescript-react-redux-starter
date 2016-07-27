@@ -7,7 +7,7 @@ import 'ts-helpers';
 const testContext = (<{ context?: Function }>require)
   .context('./', true, /^(.(?!tests\.entry))*\.tsx?$/);
 
-testContext('./index.tsx');
+testContext('./index.ts');
 
 testContext.keys().forEach(
   key => {
@@ -15,4 +15,3 @@ testContext.keys().forEach(
       testContext(key);
     }
   });
-

@@ -3,7 +3,6 @@
 process.env.TEST = true;
 
 const loaders = require('./webpack/loaders');
-const postcssInit = require('./webpack/postcss');
 const plugins = require('./webpack/plugins');
 const webpack = require('./webpack.config');
 
@@ -62,8 +61,7 @@ module.exports = (config) => {
         reasons: true,
       },
       debug: config.singleRun ? false : true,
-      plugins,
-      postcss: postcssInit,
+      plugins
     }),
 
     webpackServer: {
